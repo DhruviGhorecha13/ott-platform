@@ -2,9 +2,12 @@ import express from "express";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { attachUser } from "../middleware/authMiddleware.js";
+import { hasActiveSubscription } from "./subscriptionRoutes.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const router = express.Router();
+const FREE_TITLE_LIMIT = 15;
 
 // ---- Local, offline catalog -----------------------------------------
 // No external API calls. Data lives in data/movies.json; poster and
@@ -13,43 +16,61 @@ const router = express.Router();
 // This keeps the whole app runnable with zero internet access, which
 // matters for demoing on a network that may block outbound calls.
 const dataPath = path.join(__dirname, "..", "data", "movies.json");
-const { titles, genres } = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
+let titles = [];
+let genres = [];
+let allItems = [];
+
+export const reloadCatalog = () => {
+  const catalog = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
+  titles = catalog.titles;
+  genres = catalog.genres;
+  allItems = titles.map(toListItem);
+};
 
 // Shape each raw title into the TMDb-like list-item format the
 // frontend already expects (item.title/name, poster_path, etc).
-const toListItem = (t) => ({
-  id: t.id,
-  media_type: t.media_type,
-  title: t.title,
-  name: t.title,
-  overview: t.overview,
-  poster_path: `/images/posters/${t.id}.svg`,
-  backdrop_path: `/images/backdrops/${t.id}.svg`,
-  vote_average: t.vote_average,
-  release_date: t.release_date,
-  first_air_date: t.release_date,
-  genre_ids: t.genre_ids,
-});
+const toListItem = (t) => {
+  const imgExt = t.image_ext || "svg";
+  return {
+    id: t.id,
+    media_type: t.media_type,
+    title: t.title,
+    name: t.title,
+    overview: t.overview,
+    poster_path: t.poster_url || `/images/posters/${t.id}.${imgExt}`,
+    backdrop_path: t.backdrop_url || `/images/backdrops/${t.id}.${imgExt}`,
+    video_path: t.video_url || `/videos/${t.id}.mp4`,
+    vote_average: t.vote_average,
+    release_date: t.release_date,
+    first_air_date: t.release_date,
+    genre_ids: t.genre_ids,
+    real_media: t.real_media || false,
+  };
+};
 
-const allItems = titles.map(toListItem);
+const visibleItems = (user) => hasActiveSubscription(user) ? allItems : allItems.slice(0, FREE_TITLE_LIMIT);
+
+reloadCatalog();
 
 const searchByType = (mediaType) =>
   allItems.filter((i) => i.media_type === mediaType);
 
 // @route  GET /api/movies/trending
+router.use(attachUser);
+
 router.get("/trending", (req, res) => {
-  const results = [...allItems].sort((a, b) => b.vote_average - a.vote_average);
+  const results = [...visibleItems(req.user)].sort((a, b) => b.vote_average - a.vote_average);
   res.json({ results });
 });
 
 // @route  GET /api/movies/popular
 router.get("/popular", (req, res) => {
-  res.json({ results: searchByType("movie") });
+  res.json({ results: searchByType("movie").filter((item) => visibleItems(req.user).includes(item)) });
 });
 
 // @route  GET /api/movies/top-rated
 router.get("/top-rated", (req, res) => {
-  const results = searchByType("movie").sort(
+  const results = searchByType("movie").filter((item) => visibleItems(req.user).includes(item)).sort(
     (a, b) => b.vote_average - a.vote_average
   );
   res.json({ results });
@@ -57,7 +78,7 @@ router.get("/top-rated", (req, res) => {
 
 // @route  GET /api/movies/tv-popular
 router.get("/tv-popular", (req, res) => {
-  res.json({ results: searchByType("tv") });
+  res.json({ results: searchByType("tv").filter((item) => visibleItems(req.user).includes(item)) });
 });
 
 // @route  GET /api/movies/genres
@@ -68,7 +89,7 @@ router.get("/genres", (req, res) => {
 // @route  GET /api/movies/genre/:genreId
 router.get("/genre/:genreId", (req, res) => {
   const genreId = Number(req.params.genreId);
-  const results = allItems.filter((i) => i.genre_ids.includes(genreId));
+  const results = visibleItems(req.user).filter((i) => i.genre_ids.includes(genreId));
   res.json({ results });
 });
 
@@ -77,7 +98,7 @@ router.get("/search", (req, res) => {
   const { query } = req.query;
   if (!query) return res.status(400).json({ message: "Query is required" });
   const q = query.toLowerCase();
-  const results = allItems.filter((i) => i.title.toLowerCase().includes(q));
+  const results = visibleItems(req.user).filter((i) => i.title.toLowerCase().includes(q));
   res.json({ results });
 });
 
@@ -88,6 +109,9 @@ router.get("/:mediaType/:id", (req, res) => {
     (t) => t.id === Number(id) && t.media_type === mediaType
   );
   if (!raw) return res.status(404).json({ message: "Title not found" });
+  if (!hasActiveSubscription(req.user) && raw.id > FREE_TITLE_LIMIT) {
+    return res.status(402).json({ message: "Subscribe to unlock the full catalog", code: "SUBSCRIPTION_REQUIRED" });
+  }
 
   const details = {
     ...toListItem(raw),

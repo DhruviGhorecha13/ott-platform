@@ -16,7 +16,9 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
+  const [step, setStep] = useState("credentials");
+  const [code, setCode] = useState("");
+  const { requestCode, verifyCode } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -24,10 +26,24 @@ const Login = () => {
     setError("");
     setLoading(true);
     try {
-      await login(email, password);
-      navigate("/");
+      await requestCode("login", { email, password });
+      setStep("code");
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleVerify = async (e) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+    try {
+      const verified = await verifyCode("login", email, code);
+      navigate(verified.role === "admin" ? "/admin" : "/");
+    } catch (err) {
+      setError(err.response?.data?.message || "Verification failed");
     } finally {
       setLoading(false);
     }
@@ -45,14 +61,17 @@ const Login = () => {
     >
       <Paper sx={{ p: 4, width: "100%", maxWidth: 400 }}>
         <Typography variant="h5" fontWeight={700} gutterBottom>
-          Sign In
+          {step === "code" ? "Verify your email" : "Sign In"}
         </Typography>
         {error && (
           <Alert severity="error" sx={{ mb: 2 }}>
             {error}
           </Alert>
         )}
-        <Box component="form" onSubmit={handleSubmit} sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+        <Box component="form" onSubmit={step === "code" ? handleVerify : handleSubmit} sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+          {step === "code" ? (
+            <TextField label="6-digit code" value={code} onChange={(e) => setCode(e.target.value.replace(/\D/g, "").slice(0, 6))} inputProps={{ inputMode: "numeric", maxLength: 6 }} required fullWidth />
+          ) : <>
           <TextField
             label="Email"
             type="email"
@@ -69,8 +88,9 @@ const Login = () => {
             required
             fullWidth
           />
+          </>}
           <Button type="submit" variant="contained" size="large" disabled={loading}>
-            {loading ? "Signing in..." : "Sign In"}
+            {loading ? "Please wait..." : step === "code" ? "Verify and continue" : "Send verification code"}
           </Button>
         </Box>
         <Typography variant="body2" sx={{ mt: 2 }}>

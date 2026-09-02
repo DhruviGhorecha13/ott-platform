@@ -138,9 +138,10 @@ function backdropSVG(item) {
 
 let count = 0;
 for (const item of titles) {
+  if (item.real_media) continue; // real posters/backdrops already in place, never overwrite
   fs.writeFileSync(path.join(postersDir, `${item.id}.svg`), posterSVG(item));
   fs.writeFileSync(path.join(backdropsDir, `${item.id}.svg`), backdropSVG(item));
   count++;
 }
 
-console.log(`Generated ${count} posters and ${count} backdrops.`);
+console.log(`Generated ${count} posters and ${count} backdrops (skipped ${titles.length - count} real-media titles).`);

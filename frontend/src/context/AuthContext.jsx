@@ -9,15 +9,13 @@ export const AuthProvider = ({ children }) => {
     return stored ? JSON.parse(stored) : null;
   });
 
-  const login = async (email, password) => {
-    const { data } = await api.post("/auth/login", { email, password });
-    localStorage.setItem("user", JSON.stringify(data));
-    setUser(data);
+  const requestCode = async (purpose, fields) => {
+    const { data } = await api.post("/auth/request-code", { purpose, ...fields });
     return data;
   };
 
-  const signup = async (name, email, password) => {
-    const { data } = await api.post("/auth/signup", { name, email, password });
+  const verifyCode = async (purpose, email, code) => {
+    const { data } = await api.post("/auth/verify-code", { purpose, email, code });
     localStorage.setItem("user", JSON.stringify(data));
     setUser(data);
     return data;
@@ -28,8 +26,14 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
+  const updateUser = (nextUser) => {
+    const merged = { ...user, ...nextUser };
+    localStorage.setItem("user", JSON.stringify(merged));
+    setUser(merged);
+  };
+
   return (
-    <AuthContext.Provider value={{ user, login, signup, logout }}>
+    <AuthContext.Provider value={{ user, requestCode, verifyCode, updateUser, logout }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   Box,
   Typography,
@@ -9,15 +9,17 @@ import {
   CircularProgress,
   Avatar,
 } from "@mui/material";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import AddIcon from "@mui/icons-material/Add";
 import CheckIcon from "@mui/icons-material/Check";
-import { getDetails, IMG_BASE, IMG_BASE_ORIGINAL } from "../api/movies.js";
+import { getDetails, mediaUrl } from "../api/movies.js";
 import MovieRow from "../components/MovieRow.jsx";
 import { useAuth } from "../context/AuthContext.jsx";
 import { addToWatchlist, removeFromWatchlist, getWatchlist } from "../api/watchlist.js";
 
 const MovieDetail = () => {
   const { mediaType, id } = useParams();
+  const navigate = useNavigate();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [inWatchlist, setInWatchlist] = useState(false);
@@ -66,18 +68,15 @@ const MovieDetail = () => {
 
   if (!data) return null;
 
-  const { details, cast, videos, similar } = data;
+  const { details, cast, similar } = data;
   const title = details.title || details.name;
-  const trailer = videos.find(
-    (v) => v.type === "Trailer" && v.site === "YouTube"
-  );
 
   return (
     <Box>
       <Box
         sx={{
           height: { xs: "45vh", md: "60vh" },
-          backgroundImage: `linear-gradient(to top, #0b0b0f 5%, rgba(11,11,15,0.4) 60%), url(${IMG_BASE_ORIGINAL}${details.backdrop_path})`,
+          backgroundImage: `linear-gradient(to top, #0b0b0f 5%, rgba(11,11,15,0.4) 60%), url(${mediaUrl(details.backdrop_path)})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -100,17 +99,14 @@ const MovieDetail = () => {
         </Typography>
 
         <Stack direction="row" spacing={2} sx={{ mb: 4 }}>
-          {trailer && (
-            <Button
-              variant="contained"
-              size="large"
-              href={`https://www.youtube.com/watch?v=${trailer.key}`}
-              target="_blank"
-              rel="noopener"
-            >
-              ▶ Watch Trailer
-            </Button>
-          )}
+          <Button
+            variant="contained"
+            size="large"
+            startIcon={<PlayArrowIcon />}
+            onClick={() => navigate(`/watch/${mediaType}/${id}`)}
+          >
+            Play
+          </Button>
           {user && (
             <Button
               variant="outlined"
@@ -133,7 +129,7 @@ const MovieDetail = () => {
               {cast.map((c) => (
                 <Box key={c.id} sx={{ textAlign: "center", flex: "0 0 auto", width: 90 }}>
                   <Avatar
-                    src={c.profile_path ? `${IMG_BASE}${c.profile_path}` : undefined}
+                    src={c.profile_path ? mediaUrl(c.profile_path) : undefined}
                     sx={{ width: 70, height: 70, mx: "auto", mb: 1 }}
                   >
                     {c.name?.[0]}

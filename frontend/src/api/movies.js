@@ -10,6 +10,12 @@ const API_ORIGIN = (import.meta.env.VITE_API_URL || "http://localhost:5000/api")
 export const IMG_BASE = API_ORIGIN;
 export const IMG_BASE_ORIGINAL = API_ORIGIN;
 
+export const mediaUrl = (mediaPath) => {
+  if (!mediaPath) return "";
+  if (/^https?:\/\//i.test(mediaPath)) return mediaPath;
+  return `${API_ORIGIN}${mediaPath.startsWith("/") ? mediaPath : `/${mediaPath}`}`;
+};
+
 export const getTrending = () => api.get("/movies/trending").then((r) => r.data);
 export const getPopular = () => api.get("/movies/popular").then((r) => r.data);
 export const getTopRated = () => api.get("/movies/top-rated").then((r) => r.data);

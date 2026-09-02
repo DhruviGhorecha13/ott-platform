@@ -1,58 +1,813 @@
 {
   "genres": [
-    { "id": 1, "name": "Action" },
-    { "id": 2, "name": "Adventure" },
-    { "id": 3, "name": "Animation" },
-    { "id": 4, "name": "Comedy" },
-    { "id": 5, "name": "Crime" },
-    { "id": 6, "name": "Drama" },
-    { "id": 7, "name": "Family" },
-    { "id": 8, "name": "Fantasy" },
-    { "id": 9, "name": "History" },
-    { "id": 10, "name": "Horror" },
-    { "id": 11, "name": "Music" },
-    { "id": 12, "name": "Mystery" },
-    { "id": 13, "name": "Romance" },
-    { "id": 14, "name": "Sci-Fi" },
-    { "id": 15, "name": "Sport" },
-    { "id": 16, "name": "Thriller" },
-    { "id": 17, "name": "War" },
-    { "id": 18, "name": "Biography" },
-    { "id": 19, "name": "Musical" }
+    {
+      "id": 1,
+      "name": "Action"
+    },
+    {
+      "id": 2,
+      "name": "Adventure"
+    },
+    {
+      "id": 3,
+      "name": "Animation"
+    },
+    {
+      "id": 4,
+      "name": "Comedy"
+    },
+    {
+      "id": 5,
+      "name": "Crime"
+    },
+    {
+      "id": 6,
+      "name": "Drama"
+    },
+    {
+      "id": 7,
+      "name": "Family"
+    },
+    {
+      "id": 8,
+      "name": "Fantasy"
+    },
+    {
+      "id": 9,
+      "name": "History"
+    },
+    {
+      "id": 10,
+      "name": "Horror"
+    },
+    {
+      "id": 11,
+      "name": "Music"
+    },
+    {
+      "id": 12,
+      "name": "Mystery"
+    },
+    {
+      "id": 13,
+      "name": "Romance"
+    },
+    {
+      "id": 14,
+      "name": "Sci-Fi"
+    },
+    {
+      "id": 15,
+      "name": "Sport"
+    },
+    {
+      "id": 16,
+      "name": "Thriller"
+    },
+    {
+      "id": 17,
+      "name": "War"
+    },
+    {
+      "id": 18,
+      "name": "Biography"
+    },
+    {
+      "id": 19,
+      "name": "Musical"
+    }
   ],
   "titles": [
-    { "id": 1, "media_type": "movie", "title": "Avengers: Endgame", "overview": "The surviving heroes assemble one last time to undo a universe-shattering catastrophe and face its architect.", "vote_average": 8.4, "release_date": "2019-04-26", "genre_ids": [1, 2, 14], "cast": ["Robert Downey Jr.", "Chris Evans", "Scarlett Johansson", "Chris Hemsworth"] },
-    { "id": 2, "media_type": "movie", "title": "Inception", "overview": "A skilled thief who steals secrets through dream-sharing technology is offered a chance at redemption if he can plant an idea instead.", "vote_average": 8.3, "release_date": "2010-07-16", "genre_ids": [14, 16], "cast": ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Elliot Page", "Tom Hardy"] },
-    { "id": 3, "media_type": "movie", "title": "The Dark Knight", "overview": "Gotham's vigilante is pushed to his limits when a criminal mastermind plunges the city into chaos.", "vote_average": 8.9, "release_date": "2008-07-18", "genre_ids": [1, 5, 6], "cast": ["Christian Bale", "Heath Ledger", "Aaron Eckhart", "Gary Oldman"] },
-    { "id": 4, "media_type": "movie", "title": "Interstellar", "overview": "A crew of explorers travels through a wormhole in search of a new home for humanity as Earth becomes uninhabitable.", "vote_average": 8.6, "release_date": "2014-11-07", "genre_ids": [2, 6, 14], "cast": ["Matthew McConaughey", "Anne Hathaway", "Jessica Chastain"] },
-    { "id": 5, "media_type": "movie", "title": "Parasite", "overview": "A struggling family schemes their way into the lives of a wealthy household, with consequences neither side sees coming.", "vote_average": 8.5, "release_date": "2019-05-30", "genre_ids": [6, 16], "cast": ["Song Kang-ho", "Lee Sun-kyun", "Cho Yeo-jeong"] },
-    { "id": 6, "media_type": "movie", "title": "Spider-Man: No Way Home", "overview": "A spell gone wrong tears open the multiverse, forcing Spider-Man to face threats from other realities.", "vote_average": 8.2, "release_date": "2021-12-17", "genre_ids": [1, 2, 14], "cast": ["Tom Holland", "Zendaya", "Benedict Cumberbatch"] },
-    { "id": 7, "media_type": "movie", "title": "The Shawshank Redemption", "overview": "A banker wrongly convicted of murder forms an unlikely friendship during his decades inside a brutal prison.", "vote_average": 9.3, "release_date": "1994-09-23", "genre_ids": [6, 5], "cast": ["Tim Robbins", "Morgan Freeman"] },
-    { "id": 8, "media_type": "movie", "title": "Pulp Fiction", "overview": "The lives of two hitmen, a boxer, and a gangster's wife intertwine in four tales of violence and redemption.", "vote_average": 8.9, "release_date": "1994-10-14", "genre_ids": [5, 6], "cast": ["John Travolta", "Samuel L. Jackson", "Uma Thurman"] },
-    { "id": 9, "media_type": "movie", "title": "The Matrix", "overview": "A computer hacker discovers his reality is a simulation and joins a rebellion against its controllers.", "vote_average": 8.7, "release_date": "1999-03-31", "genre_ids": [1, 14], "cast": ["Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss"] },
-    { "id": 10, "media_type": "movie", "title": "Titanic", "overview": "A penniless artist and a young aristocrat fall in love aboard the doomed ocean liner's maiden voyage.", "vote_average": 7.9, "release_date": "1997-12-19", "genre_ids": [13, 6], "cast": ["Leonardo DiCaprio", "Kate Winslet"] },
-    { "id": 11, "media_type": "movie", "title": "Joker", "overview": "A failed comedian's descent into isolation and ridicule pushes him toward a violent, chaotic transformation.", "vote_average": 8.4, "release_date": "2019-10-04", "genre_ids": [5, 6, 16], "cast": ["Joaquin Phoenix", "Robert De Niro"] },
-    { "id": 12, "media_type": "movie", "title": "La La Land", "overview": "An aspiring actress and a dedicated jazz musician pursue their dreams while falling in love in Los Angeles.", "vote_average": 8.0, "release_date": "2016-12-09", "genre_ids": [13, 19, 6], "cast": ["Ryan Gosling", "Emma Stone"] },
-    { "id": 13, "media_type": "movie", "title": "Coco", "overview": "A young boy is transported to the Land of the Dead, where he uncovers the truth about his family's history.", "vote_average": 8.4, "release_date": "2017-11-22", "genre_ids": [3, 7, 8], "cast": ["Anthony Gonzalez", "Gael García Bernal"] },
-    { "id": 14, "media_type": "movie", "title": "Toy Story", "overview": "A cowboy doll's world is turned upside down when a spaceman action figure becomes his owner's new favorite toy.", "vote_average": 8.3, "release_date": "1995-11-22", "genre_ids": [3, 7, 4], "cast": ["Tom Hanks", "Tim Allen"] },
-    { "id": 15, "media_type": "movie", "title": "Frozen II", "overview": "Elsa and Anna journey beyond their kingdom to discover the origin of Elsa's powers and save their homeland.", "vote_average": 7.3, "release_date": "2019-11-22", "genre_ids": [3, 7, 8], "cast": ["Kristen Bell", "Idina Menzel"] },
-    { "id": 16, "media_type": "movie", "title": "John Wick", "overview": "A retired hitman comes out of retirement to hunt down the gangsters that took everything from him.", "vote_average": 7.9, "release_date": "2014-10-24", "genre_ids": [1, 16], "cast": ["Keanu Reeves", "Michael Nyqvist"] },
-    { "id": 17, "media_type": "movie", "title": "Mad Max: Fury Road", "overview": "In a post-apocalyptic wasteland, a woman rebels against a tyrannical ruler in search of her homeland.", "vote_average": 8.1, "release_date": "2015-05-15", "genre_ids": [1, 2, 14], "cast": ["Tom Hardy", "Charlize Theron"] },
-    { "id": 18, "media_type": "movie", "title": "Get Out", "overview": "A young man uncovers a disturbing secret when he visits his girlfriend's family estate for the first time.", "vote_average": 7.7, "release_date": "2017-02-24", "genre_ids": [10, 16], "cast": ["Daniel Kaluuya", "Allison Williams"] },
-    { "id": 19, "media_type": "movie", "title": "Whiplash", "overview": "A young drummer enrolls at a competitive music conservatory under the guidance of a ruthless instructor.", "vote_average": 8.5, "release_date": "2014-10-10", "genre_ids": [6, 11], "cast": ["Miles Teller", "J.K. Simmons"] },
-    { "id": 20, "media_type": "movie", "title": "The Grand Budapest Hotel", "overview": "A legendary concierge and his protégé become entangled in a theft and murder involving a family fortune.", "vote_average": 8.1, "release_date": "2014-03-28", "genre_ids": [4, 6], "cast": ["Ralph Fiennes", "Tony Revolori"] },
-    { "id": 21, "media_type": "movie", "title": "Dangal", "overview": "A former wrestler trains his daughters to become India's first world-class female wrestlers.", "vote_average": 8.3, "release_date": "2016-12-23", "genre_ids": [6, 15, 18], "cast": ["Aamir Khan", "Fatima Sana Shaikh", "Sanya Malhotra"] },
-    { "id": 22, "media_type": "movie", "title": "3 Idiots", "overview": "Two friends search for their long-lost college companion, recalling how he taught them to challenge a rigid education system.", "vote_average": 8.4, "release_date": "2009-12-25", "genre_ids": [4, 6], "cast": ["Aamir Khan", "R. Madhavan", "Sharman Joshi"] },
-    { "id": 23, "media_type": "movie", "title": "Zindagi Na Milegi Dobara", "overview": "Three friends confront their fears and rediscover themselves on a bachelor road trip across Spain.", "vote_average": 8.1, "release_date": "2011-07-15", "genre_ids": [6, 4], "cast": ["Hrithik Roshan", "Farhan Akhtar", "Abhay Deol"] },
-    { "id": 24, "media_type": "movie", "title": "RRR", "overview": "Two revolutionaries fight British colonial rule while forging an unlikely brotherhood in 1920s India.", "vote_average": 7.9, "release_date": "2022-03-25", "genre_ids": [1, 6, 9], "cast": ["N. T. Rama Rao Jr.", "Ram Charan"] },
-    { "id": 25, "media_type": "movie", "title": "Gully Boy", "overview": "A young man from Mumbai's slums channels his hardships into rap music to break free from his circumstances.", "vote_average": 7.9, "release_date": "2019-02-14", "genre_ids": [6, 11], "cast": ["Ranveer Singh", "Alia Bhatt"] },
-    { "id": 26, "media_type": "tv", "title": "Stranger Things", "overview": "A group of kids in a small town uncover secret government experiments and otherworldly forces.", "vote_average": 8.6, "release_date": "2016-07-15", "genre_ids": [14, 10, 6], "cast": ["Millie Bobby Brown", "Finn Wolfhard", "Winona Ryder"] },
-    { "id": 27, "media_type": "tv", "title": "Breaking Bad", "overview": "A struggling chemistry teacher turns to manufacturing methamphetamine after a terminal diagnosis, spiraling into a criminal empire.", "vote_average": 9.5, "release_date": "2008-01-20", "genre_ids": [5, 6, 16], "cast": ["Bryan Cranston", "Aaron Paul"] },
-    { "id": 28, "media_type": "tv", "title": "Money Heist", "overview": "A criminal mastermind orchestrates an audacious heist on the Royal Mint of Spain using a group of skilled outlaws.", "vote_average": 8.2, "release_date": "2017-05-02", "genre_ids": [5, 6, 16], "cast": ["Úrsula Corberó", "Álvaro Morte"] },
-    { "id": 29, "media_type": "tv", "title": "The Office", "overview": "A mockumentary crew captures the everyday absurdity of life at a mid-sized paper company.", "vote_average": 8.9, "release_date": "2005-03-24", "genre_ids": [4], "cast": ["Steve Carell", "John Krasinski", "Jenna Fischer"] },
-    { "id": 30, "media_type": "tv", "title": "Sacred Games", "overview": "A Mumbai police officer races against time after a tip-off from a fugitive gangster reveals a looming citywide threat.", "vote_average": 8.6, "release_date": "2018-07-06", "genre_ids": [5, 6, 16], "cast": ["Saif Ali Khan", "Nawazuddin Siddiqui"] },
-    { "id": 31, "media_type": "tv", "title": "Mirzapur", "overview": "Power, greed, and vengeance collide in the lawless badlands of Mirzapur as rival families battle for control.", "vote_average": 8.5, "release_date": "2018-11-16", "genre_ids": [5, 1, 6], "cast": ["Pankaj Tripathi", "Ali Fazal", "Divyendu Sharma"] },
-    { "id": 32, "media_type": "tv", "title": "Game of Thrones", "overview": "Noble families vie for control of the Iron Throne while an ancient threat stirs beyond the Wall.", "vote_average": 9.2, "release_date": "2011-04-17", "genre_ids": [8, 6, 1], "cast": ["Emilia Clarke", "Kit Harington", "Peter Dinklage"] },
-    { "id": 33, "media_type": "tv", "title": "Friends", "overview": "Six young friends navigate love, careers, and life's ups and downs together in New York City.", "vote_average": 8.9, "release_date": "1994-09-22", "genre_ids": [4, 13], "cast": ["Jennifer Aniston", "Courteney Cox", "Matthew Perry"] }
+    {
+      "id": 1,
+      "media_type": "movie",
+      "title": "Avengers: Endgame",
+      "overview": "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",
+      "vote_average": 8.4,
+      "release_date": "26 Apr 2019",
+      "genre_ids": [
+        1,
+        2,
+        14
+      ],
+      "cast": [
+        "Robert Downey Jr.",
+        "Chris Evans",
+        "Mark Ruffalo"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BMWEyNDM2ZmQtMmFkNi00MTQ1LTk1MjItMzdlZGJlYmIyYzZlXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+      "imdb_id": "tt4154796"
+    },
+    {
+      "id": 2,
+      "media_type": "movie",
+      "title": "Inception",
+      "overview": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a CEO, but his tragic past may doom the project and his team to disaster.",
+      "vote_average": 8.8,
+      "release_date": "16 Jul 2010",
+      "genre_ids": [
+        1,
+        2,
+        14
+      ],
+      "cast": [
+        "Leonardo DiCaprio",
+        "Joseph Gordon-Levitt",
+        "Elliot Page"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+      "imdb_id": "tt1375666"
+    },
+    {
+      "id": 3,
+      "media_type": "movie",
+      "title": "The Dark Knight",
+      "overview": "When a menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman, James Gordon and Harvey Dent must work together to put an end to the madness.",
+      "vote_average": 9.1,
+      "release_date": "18 Jul 2008",
+      "genre_ids": [
+        1,
+        5,
+        6
+      ],
+      "cast": [
+        "Christian Bale",
+        "Heath Ledger",
+        "Aaron Eckhart"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+      "imdb_id": "tt0468569"
+    },
+    {
+      "id": 4,
+      "media_type": "movie",
+      "title": "Interstellar",
+      "overview": "When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.",
+      "vote_average": 8.7,
+      "release_date": "07 Nov 2014",
+      "genre_ids": [
+        2,
+        6,
+        14
+      ],
+      "cast": [
+        "Matthew McConaughey",
+        "Anne Hathaway",
+        "Jessica Chastain"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+      "imdb_id": "tt0816692"
+    },
+    {
+      "id": 5,
+      "media_type": "movie",
+      "title": "Parasite",
+      "overview": "Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan.",
+      "vote_average": 8.5,
+      "release_date": "08 Nov 2019",
+      "genre_ids": [
+        6,
+        16
+      ],
+      "cast": [
+        "Song Kang-ho",
+        "Lee Sun-kyun",
+        "Cho Yeo-jeong"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BYjk1Y2U4MjQtY2ZiNS00OWQyLWI3MmYtZWUwNmRjYWRiNWNhXkEyXkFqcGc@._V1_SX300.jpg",
+      "imdb_id": "tt6751668"
+    },
+    {
+      "id": 6,
+      "media_type": "movie",
+      "title": "Spider-Man: No Way Home",
+      "overview": "With Spider-Man's identity now revealed, Peter asks Doctor Strange for help. When a spell goes wrong, dangerous foes from other worlds start to appear.",
+      "vote_average": 8.1,
+      "release_date": "17 Dec 2021",
+      "genre_ids": [
+        1,
+        2,
+        8
+      ],
+      "cast": [
+        "Tom Holland",
+        "Zendaya",
+        "Benedict Cumberbatch"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BMmFiZGZjMmEtMTA0Ni00MzA2LTljMTYtZGI2MGJmZWYzZTQ2XkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg",
+      "imdb_id": "tt10872600"
+    },
+    {
+      "id": 7,
+      "media_type": "movie",
+      "title": "The Shawshank Redemption",
+      "overview": "After a banker is sentenced to life in Shawshank Prison, he forms an unlikely friendship with a seasoned inmate and clings to hope amid cruelty and corruption.",
+      "vote_average": 9.3,
+      "release_date": "14 Oct 1994",
+      "genre_ids": [
+        6
+      ],
+      "cast": [
+        "Tim Robbins",
+        "Morgan Freeman",
+        "Bob Gunton"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BMDAyY2FhYjctNDc5OS00MDNlLThiMGUtY2UxYWVkNGY2ZjljXkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg",
+      "imdb_id": "tt0111161"
+    },
+    {
+      "id": 8,
+      "media_type": "movie",
+      "title": "Pulp Fiction",
+      "overview": "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+      "vote_average": 8.8,
+      "release_date": "14 Oct 1994",
+      "genre_ids": [
+        5,
+        6
+      ],
+      "cast": [
+        "John Travolta",
+        "Uma Thurman",
+        "Samuel L. Jackson"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BYTViYTE3ZGQtNDBlMC00ZTAyLTkyODMtZGRiZDg0MjA2YThkXkEyXkFqcGc@._V1_QL75_UY562_CR3,0,380,562_.jpg",
+      "imdb_id": "tt0110912"
+    },
+    {
+      "id": 9,
+      "media_type": "movie",
+      "title": "The Matrix",
+      "overview": "When a beautiful stranger leads computer hacker Neo to a forbidding underworld, he discovers the shocking truth--the life he knows is the elaborate deception of an evil cyber-intelligence.",
+      "vote_average": 8.7,
+      "release_date": "31 Mar 1999",
+      "genre_ids": [
+        1,
+        14
+      ],
+      "cast": [
+        "Keanu Reeves",
+        "Laurence Fishburne",
+        "Carrie-Anne Moss"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BN2NmN2VhMTQtMDNiOS00NDlhLTliMjgtODE2ZTY0ODQyNDRhXkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg",
+      "imdb_id": "tt0133093"
+    },
+    {
+      "id": 10,
+      "media_type": "movie",
+      "title": "Titanic",
+      "overview": "A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.",
+      "vote_average": 8,
+      "release_date": "19 Dec 1997",
+      "genre_ids": [
+        6,
+        13
+      ],
+      "cast": [
+        "Leonardo DiCaprio",
+        "Kate Winslet",
+        "Billy Zane"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BYzYyN2FiZmUtYWYzMy00MzViLWJkZTMtOGY1ZjgzNWMwN2YxXkEyXkFqcGc@._V1_QL75_UX380_CR0,2,380,562_.jpg",
+      "imdb_id": "tt0120338"
+    },
+    {
+      "id": 11,
+      "media_type": "movie",
+      "title": "Joker",
+      "overview": "Arthur Fleck, a party clown and a failed stand-up comedian, leads an impoverished life with his ailing mother. However, when society shuns him and brands him as a freak, he decides to embrace the life of chaos in Gotham City.",
+      "vote_average": 8.3,
+      "release_date": "04 Oct 2019",
+      "genre_ids": [
+        5,
+        6,
+        16
+      ],
+      "cast": [
+        "Joaquin Phoenix",
+        "Robert De Niro",
+        "Zazie Beetz"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BNzY3OWQ5NDktNWQ2OC00ZjdlLThkMmItMDhhNDk3NTFiZGU4XkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+      "imdb_id": "tt7286456"
+    },
+    {
+      "id": 12,
+      "media_type": "movie",
+      "title": "La La Land",
+      "overview": "When Sebastian, a pianist, and Mia, an actress, follow their passion and achieve success in their respective fields, they find themselves torn between their love for each other and their careers.",
+      "vote_average": 8,
+      "release_date": "25 Dec 2016",
+      "genre_ids": [
+        4,
+        6,
+        11
+      ],
+      "cast": [
+        "Ryan Gosling",
+        "Emma Stone",
+        "Rosemarie DeWitt"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BMzUzNDM2NzM2MV5BMl5BanBnXkFtZTgwNTM3NTg4OTE@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+      "imdb_id": "tt3783958"
+    },
+    {
+      "id": 13,
+      "media_type": "movie",
+      "title": "Coco",
+      "overview": "Aspiring musician Miguel, confronted with his family's ancestral ban on music, enters the Land of the Dead to find his great-great-grandfather, a legendary singer.",
+      "vote_average": 8.4,
+      "release_date": "22 Nov 2017",
+      "genre_ids": [
+        2,
+        3,
+        6
+      ],
+      "cast": [
+        "Anthony Gonzalez",
+        "Gael García Bernal",
+        "Benjamin Bratt"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BMDIyM2E2NTAtMzlhNy00ZGUxLWI1NjgtZDY5MzhiMDc5NGU3XkEyXkFqcGc@._V1_QL75_UY562_CR7,0,380,562_.jpg",
+      "imdb_id": "tt2380307"
+    },
+    {
+      "id": 14,
+      "media_type": "movie",
+      "title": "Toy Story",
+      "overview": "A cowboy doll is profoundly jealous when a new spaceman action figure supplants him as the top toy in a boy's bedroom. When circumstances separate them from their owner, the duo have to put aside their differences to return to him.",
+      "vote_average": 8.3,
+      "release_date": "22 Nov 1995",
+      "genre_ids": [
+        2,
+        3,
+        4
+      ],
+      "cast": [
+        "Tom Hanks",
+        "Tim Allen",
+        "Don Rickles"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BZTA3OWVjOWItNjE1NS00NzZiLWE1MjgtZDZhMWI1ZTlkNzYwXkEyXkFqcGc@._V1_SX300.jpg",
+      "imdb_id": "tt0114709"
+    },
+    {
+      "id": 15,
+      "media_type": "movie",
+      "title": "Frozen II",
+      "overview": "Anna, Elsa, Kristoff, Olaf and Sven leave Arendelle to travel to an ancient, autumn-bound forest of an enchanted land. They set out to find the origin of Elsa's powers in order to save their kingdom.",
+      "vote_average": 6.8,
+      "release_date": "22 Nov 2019",
+      "genre_ids": [
+        2,
+        3,
+        4
+      ],
+      "cast": [
+        "Kristen Bell",
+        "Idina Menzel",
+        "Josh Gad"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BZTE1YjlmZjctNjIwNi00NDQ0LTlmMzgtYWZkY2RkZTMwNTdmXkEyXkFqcGc@._V1_SX300.jpg",
+      "imdb_id": "tt4520988"
+    },
+    {
+      "id": 16,
+      "media_type": "movie",
+      "title": "John Wick",
+      "overview": "John Wick is a former hitman grieving the loss of his true love. When his home is broken into, robbed, and his dog killed, he is forced to return to action to exact revenge.",
+      "vote_average": 7.5,
+      "release_date": "24 Oct 2014",
+      "genre_ids": [
+        1,
+        5,
+        16
+      ],
+      "cast": [
+        "Keanu Reeves",
+        "Michael Nyqvist",
+        "Alfie Allen"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_SX300.jpg",
+      "imdb_id": "tt2911666"
+    },
+    {
+      "id": 17,
+      "media_type": "movie",
+      "title": "Mad Max: Fury Road",
+      "overview": "In a post-apocalyptic wasteland, a woman rebels against a tyrannical ruler in search for her homeland with the aid of a group of female prisoners, a psychotic worshipper and a drifter named Max.",
+      "vote_average": 8.1,
+      "release_date": "15 May 2015",
+      "genre_ids": [
+        1,
+        2,
+        14
+      ],
+      "cast": [
+        "Tom Hardy",
+        "Charlize Theron",
+        "Nicholas Hoult"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BZDRkODJhOTgtOTc1OC00NTgzLTk4NjItNDgxZDY4YjlmNDY2XkEyXkFqcGc@._V1_SX300.jpg",
+      "imdb_id": "tt1392190"
+    },
+    {
+      "id": 18,
+      "media_type": "movie",
+      "title": "Get Out",
+      "overview": "A young African-American visits his white girlfriend's parents for the weekend, where his simmering uneasiness about their reception of him eventually reaches a boiling point.",
+      "vote_average": 7.8,
+      "release_date": "24 Feb 2017",
+      "genre_ids": [
+        10,
+        12,
+        16
+      ],
+      "cast": [
+        "Daniel Kaluuya",
+        "Allison Williams",
+        "Bradley Whitford"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BMjUxMDQwNjcyNl5BMl5BanBnXkFtZTgwNzcwMzc0MTI@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+      "imdb_id": "tt5052448"
+    },
+    {
+      "id": 19,
+      "media_type": "movie",
+      "title": "Whiplash",
+      "overview": "A promising young drummer enrolls at a cut-throat music conservatory where his dreams of greatness are mentored by an instructor who will stop at nothing to realize a student's potential.",
+      "vote_average": 8.5,
+      "release_date": "15 Oct 2014",
+      "genre_ids": [
+        6,
+        11
+      ],
+      "cast": [
+        "Miles Teller",
+        "J.K. Simmons",
+        "Melissa Benoist"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BMDFjOWFkYzktYzhhMC00NmYyLTkwY2EtYjViMDhmNzg0OGFkXkEyXkFqcGc@._V1_SX300.jpg",
+      "imdb_id": "tt2582802"
+    },
+    {
+      "id": 20,
+      "media_type": "movie",
+      "title": "The Grand Budapest Hotel",
+      "overview": "A writer encounters the owner of an aging high-class hotel, who tells him of his early years serving as a lobby boy in the hotel's glorious years under an exceptional concierge.",
+      "vote_average": 8.1,
+      "release_date": "28 Mar 2014",
+      "genre_ids": [
+        4,
+        6
+      ],
+      "cast": [
+        "Ralph Fiennes",
+        "F. Murray Abraham",
+        "Mathieu Amalric"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BMzM5NjUxOTEyMl5BMl5BanBnXkFtZTgwNjEyMDM0MDE@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+      "imdb_id": "tt2278388"
+    },
+    {
+      "id": 21,
+      "media_type": "movie",
+      "title": "Dangal",
+      "overview": "Mahavir Singh Phogat, a former wrestler, decides to fulfill his dream of winning a gold medal for his country by training his daughters for the Commonwealth Games despite the existing social stigmas.",
+      "vote_average": 8.3,
+      "release_date": "21 Dec 2016",
+      "genre_ids": [
+        1,
+        6,
+        18
+      ],
+      "cast": [
+        "Aamir Khan",
+        "Sakshi Tanwar",
+        "Fatima Sana Shaikh"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BMTQ4MzQzMzM2Nl5BMl5BanBnXkFtZTgwMTQ1NzU3MDI@._V1_SX300.jpg",
+      "imdb_id": "tt5074352"
+    },
+    {
+      "id": 22,
+      "media_type": "movie",
+      "title": "3 Idiots",
+      "overview": "Two friends are searching for their long lost companion. They revisit their college days and recall the memories of their friend who inspired them to think differently, even as the rest of the world called them \"idiots\".",
+      "vote_average": 8.4,
+      "release_date": "25 Dec 2009",
+      "genre_ids": [
+        4,
+        6
+      ],
+      "cast": [
+        "Aamir Khan",
+        "Madhavan",
+        "Mona Singh"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BNzc4ZWQ3NmYtODE0Ny00YTQ4LTlkZWItNTBkMGQ0MmUwMmJlXkEyXkFqcGc@._V1_SX300.jpg",
+      "imdb_id": "tt1187043"
+    },
+    {
+      "id": 23,
+      "media_type": "movie",
+      "title": "Zindagi Na Milegi Dobara",
+      "overview": "Three friends decide to turn their fantasy vacation into reality after one of their friends gets engaged.",
+      "vote_average": 8.2,
+      "release_date": "15 Jul 2011",
+      "genre_ids": [
+        4,
+        6,
+        19
+      ],
+      "cast": [
+        "Hrithik Roshan",
+        "Farhan Akhtar",
+        "Abhay Deol"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BOGIzYzg5NzItNDRkYS00NmIzLTk3NzQtZWYwY2VlZDhiYWQ4XkEyXkFqcGc@._V1_SX300.jpg",
+      "imdb_id": "tt1562872"
+    },
+    {
+      "id": 24,
+      "media_type": "movie",
+      "title": "RRR",
+      "overview": "A fearless warrior on a perilous mission comes face to face with a steely cop serving British forces in this epic saga set in pre-independent India.",
+      "vote_average": 7.8,
+      "release_date": "25 Mar 2022",
+      "genre_ids": [
+        1,
+        2,
+        6
+      ],
+      "cast": [
+        "N.T. Rama Rao Jr.",
+        "Ram Charan",
+        "Ajay Devgn"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BNWMwODYyMjQtMTczMi00NTQ1LWFkYjItMGJhMWRkY2E3NDAyXkEyXkFqcGc@._V1_SX300.jpg",
+      "imdb_id": "tt8178634"
+    },
+    {
+      "id": 25,
+      "media_type": "movie",
+      "title": "Gully Boy",
+      "overview": "A coming-of-age story based on the lives of street rappers in Mumbai.",
+      "vote_average": 7.9,
+      "release_date": "14 Feb 2019",
+      "genre_ids": [
+        6,
+        11,
+        13
+      ],
+      "cast": [
+        "Ranveer Singh",
+        "Alia Bhatt",
+        "Siddhant Chaturvedi"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BOWFkY2M3NDctZGEzMS00M2VmLTgzMTAtZWFiNjVmZDc5NWFjXkEyXkFqcGc@._V1_SX300.jpg",
+      "imdb_id": "tt2395469"
+    },
+    {
+      "id": 26,
+      "media_type": "tv",
+      "title": "Stranger Things",
+      "overview": "In 1980s Indiana, a group of young friends witness supernatural forces and secret government exploits. As they search for answers, the children unravel a series of extraordinary mysteries.",
+      "vote_average": 8.6,
+      "release_date": "15 Jul 2016",
+      "genre_ids": [
+        6,
+        8,
+        10
+      ],
+      "cast": [
+        "Millie Bobby Brown",
+        "Finn Wolfhard",
+        "Winona Ryder"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BNjRiMTA4NWUtNmE0ZC00NGM0LWJhMDUtZWIzMDM5ZDIzNTg3XkEyXkFqcGc@._V1_QL75_UY562_CR35,0,380,562_.jpg",
+      "imdb_id": "tt4574334"
+    },
+    {
+      "id": 27,
+      "media_type": "tv",
+      "title": "Breaking Bad",
+      "overview": "A chemistry teacher diagnosed with inoperable lung cancer turns to manufacturing and selling methamphetamine with a former student to secure his family's future.",
+      "vote_average": 9.5,
+      "release_date": "20 Jan 2008",
+      "genre_ids": [
+        5,
+        6,
+        16
+      ],
+      "cast": [
+        "Bryan Cranston",
+        "Aaron Paul",
+        "Anna Gunn"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BMzU5ZGYzNmQtMTdhYy00OGRiLTg0NmQtYjVjNzliZTg1ZGE4XkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg",
+      "imdb_id": "tt0903747"
+    },
+    {
+      "id": 28,
+      "media_type": "tv",
+      "title": "Money Heist",
+      "overview": "An unusual group of robbers attempt to carry out the most perfect robbery in Spanish history - stealing 2.4 billion euros from the Royal Mint of Spain.",
+      "vote_average": 8.2,
+      "release_date": "02 May 2017",
+      "genre_ids": [
+        1,
+        5,
+        6
+      ],
+      "cast": [
+        "Úrsula Corberó",
+        "Álvaro Morte",
+        "Itziar Ituño"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BZjkxZWJiNTUtYjQwYS00MTBlLTgwODQtM2FkNWMyMjMwOGZiXkEyXkFqcGc@._V1_QL75_UX380_CR0,5,380,562_.jpg",
+      "imdb_id": "tt6468322"
+    },
+    {
+      "id": 29,
+      "media_type": "tv",
+      "title": "The Office",
+      "overview": "A mockumentary on a group of typical office workers, where the workday consists of ego clashes, inappropriate behavior, tedium and romance.",
+      "vote_average": 9,
+      "release_date": "24 Mar 2005",
+      "genre_ids": [
+        4
+      ],
+      "cast": [
+        "Steve Carell",
+        "Jenna Fischer",
+        "John Krasinski"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BZjQwYzBlYzUtZjhhOS00ZDQ0LWE0NzAtYTk4MjgzZTNkZWEzXkEyXkFqcGc@._V1_QL75_UX380_CR0,4,380,562_.jpg",
+      "imdb_id": "tt0386676"
+    },
+    {
+      "id": 30,
+      "media_type": "tv",
+      "title": "Sacred Games",
+      "overview": "A link in their pasts leads an honest cop to a fugitive gang boss, whose cryptic warning spurs the officer on a quest to save Mumbai from cataclysm.",
+      "vote_average": 8.5,
+      "release_date": "06 Jul 2018",
+      "genre_ids": [
+        1,
+        5,
+        6
+      ],
+      "cast": [
+        "Saif Ali Khan",
+        "Nawazuddin Siddiqui",
+        "Neeraj Kabi"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BN2EyODc1MDAtNTg0ZC00MjRhLTg1NzctM2NjYTlmOGMwYWNiXkEyXkFqcGc@._V1_SX300.jpg",
+      "imdb_id": "tt6077448"
+    },
+    {
+      "id": 31,
+      "media_type": "tv",
+      "title": "Mirzapur",
+      "overview": "A shocking incident at a wedding procession ignites a series of events entangling the lives of two families in the lawless city of Mirzapur.",
+      "vote_average": 8.4,
+      "release_date": "15 Nov 2018",
+      "genre_ids": [
+        1,
+        5,
+        16
+      ],
+      "cast": [
+        "Ali Fazal",
+        "Rasika Dugal",
+        "Shweta Tripathi"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BZTFjMzMxZTUtYTMyNy00OWNhLTk4ODQtNGI1NjI1NjJhMzc3XkEyXkFqcGc@._V1_SX300.jpg",
+      "imdb_id": "tt6473300"
+    },
+    {
+      "id": 32,
+      "media_type": "tv",
+      "title": "Game of Thrones",
+      "overview": "Nine noble families fight for control over the lands of Westeros, while an ancient enemy returns after being dormant for millennia.",
+      "vote_average": 9.2,
+      "release_date": "17 Apr 2011",
+      "genre_ids": [
+        1,
+        2,
+        6
+      ],
+      "cast": [
+        "Emilia Clarke",
+        "Peter Dinklage",
+        "Kit Harington"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BMTNhMDJmNmYtNDQ5OS00ODdlLWE0ZDAtZTgyYTIwNDY3OTU3XkEyXkFqcGc@._V1_QL75_UX380_CR0,3,380,562_.jpg",
+      "imdb_id": "tt0944947"
+    },
+    {
+      "id": 33,
+      "media_type": "tv",
+      "title": "Friends",
+      "overview": "The personal and professional lives of six friends living in the Manhattan borough of New York City.",
+      "vote_average": 8.8,
+      "release_date": "22 Sep 1994",
+      "genre_ids": [
+        4,
+        13
+      ],
+      "cast": [
+        "Jennifer Aniston",
+        "Courteney Cox",
+        "Lisa Kudrow"
+      ],
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BOTU2YmM5ZjctOGVlMC00YTczLTljM2MtYjhlNGI5YWMyZjFkXkEyXkFqcGc@._V1_QL75_UY562_CR1,0,380,562_.jpg",
+      "imdb_id": "tt0108778"
+    },
+    {
+      "id": 34,
+      "media_type": "movie",
+      "title": "Big Buck Bunny",
+      "overview": "An enormous, fluffy, and utterly adorable rabbit is heartlessly harassed by the ruthless, loud, bullying gang of a flying squirrel, who is determined to squash his happiness.",
+      "vote_average": 6.4,
+      "release_date": "10 Apr 2008",
+      "genre_ids": [
+        3,
+        4
+      ],
+      "cast": [
+        "Sacha Goedegebure (Director)"
+      ],
+      "image_ext": "jpg",
+      "real_media": true,
+      "credit": "Blender Foundation — CC BY 3.0, bigbuckbunny.org",
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BNDA3OGZkMTMtYmUxZi00N2U0LTljZWItZmU3N2U3ZTIzYjJmXkEyXkFqcGc@._V1_SX300.jpg",
+      "imdb_id": "tt1254207"
+    },
+    {
+      "id": 35,
+      "media_type": "movie",
+      "title": "Elephants Dream",
+      "overview": "Emo and Proog are two men exploring a strange industrial world of the future.",
+      "vote_average": 5.6,
+      "release_date": "04 May 2006",
+      "genre_ids": [
+        3,
+        14
+      ],
+      "cast": [
+        "Cas Jansen",
+        "Tygo Gernandt"
+      ],
+      "image_ext": "jpg",
+      "real_media": true,
+      "credit": "Blender Foundation — CC BY, elephantsdream.org",
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BNmMxYTE3MjctYTczYy00NjM3LWJiMDgtMzExMjZkYWU3NWRmXkEyXkFqcGdeQXVyMjgwMjk0NzA@._V1_SX300.jpg",
+      "imdb_id": "tt0807840"
+    },
+    {
+      "id": 36,
+      "media_type": "movie",
+      "title": "Sintel",
+      "overview": "The film follows a girl named Sintel who is searching for a baby dragon she calls Scales.",
+      "vote_average": 7.4,
+      "release_date": "27 Sep 2010",
+      "genre_ids": [
+        1,
+        3
+      ],
+      "cast": [
+        "Halina Reijn",
+        "Thom Hoffman"
+      ],
+      "image_ext": "jpg",
+      "real_media": true,
+      "credit": "Blender Foundation — CC BY, sintel.org",
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BMzc5NTUzNTgzMF5BMl5BanBnXkFtZTcwODcwMzQ5Mw@@._V1_SX300.jpg",
+      "imdb_id": "tt1727587"
+    },
+    {
+      "id": 37,
+      "media_type": "movie",
+      "title": "Tears of Steel",
+      "overview": "He just wanted to be awesome in space.",
+      "vote_average": 5.5,
+      "release_date": "26 Sep 2012",
+      "genre_ids": [
+        14
+      ],
+      "cast": [
+        "Derek de Lint",
+        "Sergio Hasselbaink",
+        "Rogier Schippers"
+      ],
+      "image_ext": "jpg",
+      "real_media": true,
+      "credit": "Blender Foundation — CC BY, tearsofsteel.org",
+      "poster_url": "https://m.media-amazon.com/images/M/MV5BMTczMzQzNDE5NV5BMl5BanBnXkFtZTcwNzYwMzQ1OA@@._V1_SX300.jpg",
+      "imdb_id": "tt2285752"
+    }
   ]
 }

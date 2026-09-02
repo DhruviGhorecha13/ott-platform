@@ -1,7 +1,7 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Chip } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { IMG_BASE } from "../api/movies.js";
+import { mediaUrl } from "../api/movies.js";
 
 const MovieCard = ({ item }) => {
   const navigate = useNavigate();
@@ -17,22 +17,40 @@ const MovieCard = ({ item }) => {
         flex: "0 0 auto",
         width: 160,
         cursor: "pointer",
+        position: "relative",
         transition: "transform 0.2s ease",
         "&:hover": { transform: "scale(1.06)" },
       }}
     >
-      <Box
-        component="img"
-        src={`${IMG_BASE}${item.poster_path}`}
-        alt={title}
-        sx={{
-          width: "100%",
-          height: 230,
-          objectFit: "cover",
-          borderRadius: 2,
-          display: "block",
-        }}
-      />
+      <Box sx={{ position: "relative" }}>
+        <Box
+          component="img"
+          src={mediaUrl(item.poster_path)}
+          alt={title}
+          sx={{
+            width: "100%",
+            height: 230,
+            objectFit: "cover",
+            borderRadius: 2,
+            display: "block",
+          }}
+        />
+        {item.real_media && (
+          <Chip
+            label="Full clip"
+            size="small"
+            color="secondary"
+            sx={{
+              position: "absolute",
+              top: 6,
+              left: 6,
+              height: 20,
+              fontSize: "0.65rem",
+              fontWeight: 700,
+            }}
+          />
+        )}
+      </Box>
       <Typography
         variant="body2"
         sx={{

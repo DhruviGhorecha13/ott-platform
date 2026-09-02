@@ -3,7 +3,7 @@ import { Box, Typography, Button, Chip, Stack } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { useNavigate } from "react-router-dom";
-import { IMG_BASE_ORIGINAL } from "../api/movies.js";
+import { mediaUrl } from "../api/movies.js";
 
 const HeroBanner = ({ item }) => {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const HeroBanner = ({ item }) => {
         position: "relative",
         height: { xs: "50vh", md: "70vh" },
         width: "100%",
-        backgroundImage: `linear-gradient(to top, #0b0b0f 5%, rgba(11,11,15,0.3) 50%, rgba(11,11,15,0.7) 100%), url(${IMG_BASE_ORIGINAL}${item.backdrop_path})`,
+        backgroundImage: `linear-gradient(to top, #0b0b0f 5%, rgba(11,11,15,0.3) 50%, rgba(11,11,15,0.7) 100%), url(${mediaUrl(item.backdrop_path)})`,
         backgroundSize: "cover",
         backgroundPosition: "top center",
         display: "flex",
@@ -57,7 +57,7 @@ const HeroBanner = ({ item }) => {
             variant="contained"
             size="large"
             startIcon={<PlayArrowIcon />}
-            onClick={() => navigate(`/title/${mediaType}/${item.id}`)}
+            onClick={() => navigate(`/watch/${mediaType}/${item.id}`)}
           >
             Play
           </Button>

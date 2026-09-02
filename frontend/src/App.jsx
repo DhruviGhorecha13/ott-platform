@@ -6,9 +6,12 @@ import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
 import MovieDetail from "./pages/MovieDetail.jsx";
+import Watch from "./pages/Watch.jsx";
 import Search from "./pages/Search.jsx";
 import MyList from "./pages/MyList.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import Admin from "./pages/Admin.jsx";
+import Subscription from "./pages/Subscription.jsx";
 
 function App() {
   return (
@@ -19,6 +22,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/title/:mediaType/:id" element={<MovieDetail />} />
+        <Route path="/watch/:mediaType/:id" element={<Watch />} />
         <Route path="/search" element={<Search />} />
         <Route
           path="/my-list"
@@ -28,6 +32,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/admin" element={<ProtectedRoute adminOnly><Admin /></ProtectedRoute>} />
+        <Route path="/subscription" element={<ProtectedRoute><Subscription /></ProtectedRoute>} />
       </Routes>
     </Box>
   );

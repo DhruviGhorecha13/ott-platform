@@ -61,6 +61,8 @@ const Navbar = () => {
               My List
             </Button>
           )}
+          {user?.role === "admin" && <Button color="inherit" component={Link} to="/admin">Admin</Button>}
+          {user && <Button color="inherit" component={Link} to="/subscription">Plans</Button>}
         </Box>
 
         <Box
