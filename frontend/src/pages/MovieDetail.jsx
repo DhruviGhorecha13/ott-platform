@@ -22,13 +22,20 @@ const MovieDetail = () => {
   const navigate = useNavigate();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const [inWatchlist, setInWatchlist] = useState(false);
   const { user } = useAuth();
 
   useEffect(() => {
     setLoading(true);
+    setError("");
     getDetails(mediaType, id)
       .then((res) => setData(res))
+      .catch((err) => {
+        if (err.response?.status === 401) navigate("/login", { replace: true });
+        else if (err.response?.status === 402) navigate("/subscription");
+        else setError("This title could not be loaded.");
+      })
       .finally(() => setLoading(false));
   }, [mediaType, id]);
 
@@ -66,7 +73,9 @@ const MovieDetail = () => {
     );
   }
 
-  if (!data) return null;
+  if (!data) {
+    return error ? <Typography sx={{ p: 4 }}>{error}</Typography> : null;
+  }
 
   const { details, cast, similar } = data;
   const title = details.title || details.name;

@@ -2,12 +2,12 @@ import express from "express";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { attachUser } from "../middleware/authMiddleware.js";
+import { protect } from "../middleware/authMiddleware.js";
 import { hasActiveSubscription } from "./subscriptionRoutes.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const router = express.Router();
-const FREE_TITLE_LIMIT = 15;
+const FREE_TITLE_LIMIT = 10;
 
 // ---- Local, offline catalog -----------------------------------------
 // No external API calls. Data lives in data/movies.json; poster and
@@ -31,6 +31,10 @@ export const reloadCatalog = () => {
 // frontend already expects (item.title/name, poster_path, etc).
 const toListItem = (t) => {
   const imgExt = t.image_ext || "svg";
+  const youtubeUrl = t.video_url?.match(/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([^?&/]+)/i);
+  const videoPath = youtubeUrl
+    ? `https://www.youtube.com/embed/${youtubeUrl[1]}`
+    : t.video_url || `/videos/${t.id}.mp4`;
   return {
     id: t.id,
     media_type: t.media_type,
@@ -39,7 +43,8 @@ const toListItem = (t) => {
     overview: t.overview,
     poster_path: t.poster_url || `/images/posters/${t.id}.${imgExt}`,
     backdrop_path: t.backdrop_url || `/images/backdrops/${t.id}.${imgExt}`,
-    video_path: t.video_url || `/videos/${t.id}.mp4`,
+    video_path: videoPath,
+    video_source: youtubeUrl ? "youtube" : "local-preview",
     vote_average: t.vote_average,
     release_date: t.release_date,
     first_air_date: t.release_date,
@@ -55,8 +60,9 @@ reloadCatalog();
 const searchByType = (mediaType) =>
   allItems.filter((i) => i.media_type === mediaType);
 
-// @route  GET /api/movies/trending
-router.use(attachUser);
+// The catalog is available only to signed-in users. The free tier is
+// restricted by visibleItems below, while subscribers see the full catalog.
+router.use(protect);
 
 router.get("/trending", (req, res) => {
   const results = [...visibleItems(req.user)].sort((a, b) => b.vote_average - a.vote_average);
@@ -109,7 +115,7 @@ router.get("/:mediaType/:id", (req, res) => {
     (t) => t.id === Number(id) && t.media_type === mediaType
   );
   if (!raw) return res.status(404).json({ message: "Title not found" });
-  if (!hasActiveSubscription(req.user) && raw.id > FREE_TITLE_LIMIT) {
+  if (!hasActiveSubscription(req.user) && !visibleItems(req.user).some((item) => item.id === raw.id)) {
     return res.status(402).json({ message: "Subscribe to unlock the full catalog", code: "SUBSCRIPTION_REQUIRED" });
   }
 
@@ -128,6 +134,7 @@ router.get("/:mediaType/:id", (req, res) => {
   // Similar = other titles sharing at least one genre, same media type
   // preferred, ranked by number of shared genres.
   const similar = allItems
+    .filter((i) => hasActiveSubscription(req.user) || visibleItems(req.user).includes(i))
     .filter((i) => i.id !== raw.id)
     .map((i) => ({
       item: i,
@@ -143,7 +150,9 @@ router.get("/:mediaType/:id", (req, res) => {
   res.json({
     details,
     cast,
-    videos: [], // trailers need internet (YouTube embeds) - none offline
+    videos: details.video_path.includes("youtube.com/embed/")
+      ? [{ site: "YouTube", type: "Trailer", url: details.video_path }]
+      : [],
     similar,
   });
 });

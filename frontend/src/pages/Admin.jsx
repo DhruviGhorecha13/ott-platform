@@ -7,11 +7,45 @@ import { createTitle, deleteTitle, getAdminCatalog, updateTitle } from "../api/a
 import api from "../api/axios.js";
 
 const emptyTitle = { title: "", media_type: "movie", overview: "", vote_average: 0, release_date: "", genre_ids: [], cast: [] };
+const sampleTitles = {
+  "sample-1": {
+    title: "Neon Horizon",
+    media_type: "movie",
+    overview: "A satellite engineer races across a flooded future city to stop a mysterious signal before it reaches Earth.",
+    vote_average: 8.1,
+    release_date: "2025-06-20",
+    genre_ids: "1, 14, 16",
+    cast: "Maya Rao, Arjun Mehta, Elena Stone",
+  },
+  "sample-2": {
+    title: "The Last Recipe",
+    media_type: "movie",
+    overview: "A young chef returns to her coastal hometown and rebuilds her family restaurant one unforgettable dish at a time.",
+    vote_average: 7.8,
+    release_date: "2024-11-08",
+    genre_ids: "4, 6, 13",
+    cast: "Nisha Patel, Daniel Brooks, Sofia Marin",
+  },
+  "sample-3": {
+    title: "Codebreakers",
+    media_type: "tv",
+    overview: "Five student programmers uncover a decades-old mystery hidden inside the city transit network.",
+    vote_average: 8.4,
+    release_date: "2025-02-14",
+    genre_ids: "5, 12, 16",
+    cast: "Ira Shah, Noah Williams, Kiara James",
+  },
+};
 
 const Admin = () => {
   const [catalog, setCatalog] = useState({ titles: [], genres: [] });
   const [editing, setEditing] = useState(null);
   const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
+
+  const loadSample = (sampleId) => {
+    if (sampleId) setEditing({ ...sampleTitles[sampleId] });
+  };
 
   const load = () => getAdminCatalog().then(setCatalog).catch((err) => setError(err.response?.data?.message || "Could not load catalog"));
   useEffect(() => { load(); }, []);
@@ -29,7 +63,14 @@ const Admin = () => {
   };
 
   const syncMedia = async () => {
-    try { await api.post("/admin/movies/sync-media"); load(); } catch (err) { setError(err.response?.data?.message || "Could not sync media"); }
+    try {
+      setError("");
+      const result = await api.post("/admin/movies/sync-youtube");
+      setMessage(result.data.message);
+      load();
+    } catch (err) {
+      setError(err.response?.data?.message || "Could not sync YouTube trailers");
+    }
   };
 
   const syncOmdb = async () => {
@@ -39,9 +80,10 @@ const Admin = () => {
   return <Box sx={{ p: { xs: 2, md: 5 } }}>
     <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 3 }}>
       <Box><Typography variant="h4" fontWeight={800}>Catalog admin</Typography><Typography color="text.secondary">Manage movies and TV shows</Typography></Box>
-      <Stack direction="row" spacing={1}><Button onClick={syncOmdb}>Sync OMDb posters</Button><Button onClick={syncMedia}>Sync TMDb media</Button><Button variant="contained" startIcon={<AddIcon />} onClick={() => setEditing({ ...emptyTitle })}>Add title</Button></Stack>
+      <Stack direction="row" spacing={1}><Button onClick={syncOmdb}>Sync OMDb posters</Button><Button onClick={syncMedia}>Sync YouTube trailers</Button><Button variant="contained" startIcon={<AddIcon />} onClick={() => setEditing({ ...emptyTitle })}>Add title</Button></Stack>
     </Stack>
     {error && <Alert severity="error" onClose={() => setError("")} sx={{ mb: 2 }}>{error}</Alert>}
+    {message && <Alert severity="success" onClose={() => setMessage("")} sx={{ mb: 2 }}>{message}</Alert>}
     <Stack spacing={1}>
       {catalog.titles.map((item) => <Paper key={item.id} sx={{ p: 2 }}>
         <Stack direction={{ xs: "column", sm: "row" }} spacing={2} alignItems={{ sm: "center" }}>
@@ -54,6 +96,12 @@ const Admin = () => {
     <Dialog open={Boolean(editing)} onClose={() => setEditing(null)} fullWidth maxWidth="sm">
       <DialogTitle>{editing?.id ? "Edit title" : "Add title"}</DialogTitle>
       <DialogContent><Stack spacing={2} sx={{ pt: 1 }}>
+        {!editing?.id && <TextField select label="Load test data" defaultValue="" onChange={(e) => loadSample(e.target.value)} fullWidth>
+          <MenuItem value="">Start with blank form</MenuItem>
+          <MenuItem value="sample-1">Neon Horizon (Movie)</MenuItem>
+          <MenuItem value="sample-2">The Last Recipe (Movie)</MenuItem>
+          <MenuItem value="sample-3">Codebreakers (TV Show)</MenuItem>
+        </TextField>}
         <TextField label="Title" value={editing?.title || ""} onChange={(e) => setEditing({ ...editing, title: e.target.value })} fullWidth />
         <TextField select label="Type" value={editing?.media_type || "movie"} onChange={(e) => setEditing({ ...editing, media_type: e.target.value })} fullWidth><MenuItem value="movie">Movie</MenuItem><MenuItem value="tv">TV show</MenuItem></TextField>
         <TextField label="Overview" multiline minRows={3} value={editing?.overview || ""} onChange={(e) => setEditing({ ...editing, overview: e.target.value })} fullWidth />

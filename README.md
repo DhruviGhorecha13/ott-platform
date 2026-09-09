@@ -32,7 +32,8 @@ If you later deploy this somewhere with reliable internet (e.g. for a portfolio)
 - **Database:** MongoDB (Atlas or local) via Mongoose
 - **Auth:** JWT + bcrypt password hashing
 - **Verification:** six-digit, expiring email code required before a JWT is issued
-- **Data source:** local static dataset (`backend/data/movies.json`) + generated placeholder images — fully offline
+- **Data source:** local static dataset (`backend/data/movies.json`) + generated placeholder images
+- **Payments:** Razorpay Checkout with server-side signature verification
 
 ## Project structure
 
@@ -124,11 +125,11 @@ Set `ADMIN_EMAIL` in `backend/.env`. That single email is the only account that 
 
 Set the `SMTP_*` values in `backend/.env` to send verification codes through your email provider. Your existing `EMAIL_*` names are also supported. If SMTP is not configured, the backend logs codes for local development only; configure SMTP before sharing the app.
 
-TMDb is optional. OMDb is also supported: add `OMDB_API_KEY` to `backend/.env`, restart the backend, log in using the email configured as `ADMIN_EMAIL`, and click **Sync OMDb posters** on `/admin`. This updates posters and metadata for matching titles. OMDb does not provide video clips; use licensed local videos or official YouTube trailer embed URLs in the title editor. The app stores URLs only; it does not download or redistribute copyrighted films.
+OMDb is supported for posters and metadata: add `OMDB_API_KEY` to `backend/.env`, restart the backend, log in using the email configured as `ADMIN_EMAIL`, and click **Sync OMDb posters** on `/admin`. OMDb does not provide video clips. To populate official embeddable YouTube trailers without TMDb, create a YouTube Data API v3 key, add `YOUTUBE_API_KEY` to `backend/.env`, and click **Sync YouTube trailers** on `/admin`. The app stores trailer URLs only; it does not download or redistribute copyrighted films. Add Razorpay test credentials (`RAZORPAY_KEY_ID` and `RAZORPAY_KEY_SECRET`) to enable test checkout; the backend verifies every payment signature before unlocking the catalog.
 
 ## Subscription plans
 
-Users without an active subscription can browse the first 15 catalog titles. The demo checkout offers 1 month for ₹500, 6 months for ₹2,500, and 12 months for ₹5,000. A successful demo purchase stores the plan and expiry in MongoDB and unlocks the complete catalog. No real payment is processed.
+Users must sign in before browsing. Signed-in users without an active subscription can browse the first 10 catalog titles. Razorpay test checkout offers 1 month for ₹500, 6 months for ₹2,500, and 12 months for ₹5,000. A verified payment stores the plan and expiry in MongoDB and unlocks the complete catalog.
 
 ## Ideas if you have extra time before submission
 

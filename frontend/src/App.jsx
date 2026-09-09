@@ -18,12 +18,12 @@ function App() {
     <Box sx={{ minHeight: "100vh", bgcolor: "background.default" }}>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/title/:mediaType/:id" element={<MovieDetail />} />
-        <Route path="/watch/:mediaType/:id" element={<Watch />} />
-        <Route path="/search" element={<Search />} />
+        <Route path="/title/:mediaType/:id" element={<ProtectedRoute><MovieDetail /></ProtectedRoute>} />
+        <Route path="/watch/:mediaType/:id" element={<ProtectedRoute><Watch /></ProtectedRoute>} />
+        <Route path="/search" element={<ProtectedRoute><Search /></ProtectedRoute>} />
         <Route
           path="/my-list"
           element={

@@ -67,25 +67,38 @@ router.post("/movies/sync-omdb", async (req, res) => {
   }
 });
 
-router.post("/movies/sync-media", async (req, res) => {
-  if (!process.env.TMDB_API_KEY) return res.status(400).json({ message: "TMDB_API_KEY is required for real artwork and trailers" });
+router.post("/movies/sync-youtube", async (req, res) => {
+  if (!process.env.YOUTUBE_API_KEY) return res.status(400).json({ message: "YOUTUBE_API_KEY is required for YouTube trailers" });
   try {
     const catalog = readCatalog();
-    let synced = 0;
+    let trailers = 0;
+    let failed = 0;
+    let lastError = "";
     for (const title of catalog.titles) {
-      const type = title.media_type === "tv" ? "tv" : "movie";
-      const search = await axios.get(`https://api.themoviedb.org/3/search/${type}`, { params: { api_key: process.env.TMDB_API_KEY, query: title.title } });
-      const match = search.data.results?.[0];
-      if (!match) continue;
-      title.poster_url = match.poster_path ? `https://image.tmdb.org/t/p/w500${match.poster_path}` : title.poster_url;
-      title.backdrop_url = match.backdrop_path ? `https://image.tmdb.org/t/p/original${match.backdrop_path}` : title.backdrop_url;
-      const videos = await axios.get(`https://api.themoviedb.org/3/${type}/${match.id}/videos`, { params: { api_key: process.env.TMDB_API_KEY } });
-      const trailer = videos.data.results?.find((video) => video.site === "YouTube" && video.type === "Trailer") || videos.data.results?.find((video) => video.site === "YouTube");
-      if (trailer) title.video_url = `https://www.youtube.com/embed/${trailer.key}`;
-      synced++;
+      try {
+        const kind = title.media_type === "tv" ? "TV series" : "movie";
+        const search = await axios.get("https://www.googleapis.com/youtube/v3/search", {
+          params: {
+            key: process.env.YOUTUBE_API_KEY,
+            part: "snippet",
+            q: `${title.title} ${kind} official trailer`,
+            type: "video",
+            maxResults: 5,
+            videoEmbeddable: "true",
+          },
+        });
+        const trailer = search.data.items?.find((video) => /trailer|teaser|official/i.test(video.snippet?.title || "")) || search.data.items?.[0];
+        if (trailer?.id?.videoId) {
+          title.video_url = `https://www.youtube.com/embed/${trailer.id.videoId}`;
+          trailers++;
+        }
+      } catch (err) {
+        failed++;
+        lastError = err.response?.data?.error?.message || err.message;
+      }
     }
     writeCatalog(catalog);
-    res.json({ message: `Synced real media for ${synced} titles` });
+    res.json({ message: `Found ${trailers} YouTube trailers${failed ? ` (${failed} titles failed: ${lastError})` : ""}` });
   } catch (err) {
     res.status(502).json({ message: err.response?.data?.status_message || err.message });
   }

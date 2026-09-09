@@ -14,6 +14,10 @@ const Watch = () => {
     setLoading(true);
     getDetails(mediaType, id)
       .then((res) => setData(res))
+      .catch((err) => {
+        if (err.response?.status === 401) navigate("/login", { replace: true });
+        else if (err.response?.status === 402) navigate("/subscription");
+      })
       .finally(() => setLoading(false));
   }, [mediaType, id]);
 
@@ -48,8 +52,8 @@ const Watch = () => {
           px: { xs: 0, sm: 2 },
         }}
       >
-        {details.video_path?.includes("youtube.com/embed/") ? (
-          <Box component="iframe" src={details.video_path} title={title} allow="autoplay; encrypted-media" allowFullScreen sx={{ width: "100%", aspectRatio: "16 / 9", border: 0, display: "block" }} />
+        {details.video_source === "youtube" ? (
+          <Box component="iframe" src={details.video_path} title={title} referrerPolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen sx={{ width: "100%", aspectRatio: "16 / 9", border: 0, display: "block" }} />
         ) : (
           <Box component="video" key={details.video_path} src={mediaUrl(details.video_path)} controls autoPlay sx={{ width: "100%", display: "block", bgcolor: "#000", borderRadius: { xs: 0, sm: 2 } }} />
         )}
@@ -57,12 +61,14 @@ const Watch = () => {
 
       <Box sx={{ px: 3, py: 3, maxWidth: 960, mx: "auto" }}>
         <Typography variant="body2" sx={{ color: "rgba(255,255,255,0.6)" }}>
-          {details.real_media
-            ? `This is a real clip from the open-source film "${title}" (${details.release_date?.slice(
+          {details.video_source === "youtube"
+            ? "Official YouTube trailer"
+            : details.real_media
+              ? `This is a real clip from the open-source film "${title}" (${details.release_date?.slice(
                 0,
                 4
               )}), released by the Blender Foundation under a Creative Commons Attribution license.`
-            : "This is a locally generated preview clip, not the full title — this project runs fully offline, so no licensed video is streamed."}
+              : "This is a locally generated preview clip, not the full title — this project runs fully offline, so no licensed video is streamed."}
         </Typography>
       </Box>
     </Box>
